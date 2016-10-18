@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<searchRetrieveResponse xmlns="http://www.loc.gov/zing/srw/" xmlns:ns2="http://www.loc.gov/zing/cql/xcql/" xmlns:ns4="http://www.loc.gov/zing/srw/update/" xmlns:ns3="http://www.loc.gov/zing/srw/diagnostic/">
+    <numberOfRecords>1</numberOfRecords>
+    <resultSetId>default</resultSetId>
+    <records>
+        <record>
+            <recordSchema>OPACXML</recordSchema>
+            <recordPacking>xml</recordPacking>
+            <recordData>
+                <opacRecord xmlns="" xmlns:ns5="http://www.loc.gov/zing/srw/">
+                    <bibliographicRecord>
+                        <record type="Bibliographic">
+                            <leader>cam Ia </leader>
+                            <controlfield tag="001">9629102</controlfield>
+                            <controlfield tag="008">830621t19791977nyuabg b 001 0beng d</controlfield>
+                            <datafield ind1=" " ind2=" " tag="040">
+                                <subfield code="a">IAT</subfield>
+                                <subfield code="b">eng</subfield>
+                                <subfield code="c">IAT</subfield>
+                                <subfield code="d">OCL</subfield>
+                                <subfield code="d">BAKER</subfield>
+                                <subfield code="d">OCLCG</subfield>
+                                <subfield code="d">YDXCP</subfield>
+                                <subfield code="d">OCLCQ</subfield>
+                                <subfield code="d">NUI</subfield>
+                                <subfield code="d">OCLCQ</subfield>
+                                <subfield code="d">OCLCF</subfield>
+                                <subfield code="d">OCLCO</subfield>
+                                <subfield code="d">OCLCQ</subfield>
+                            </datafield>
+                            <datafield ind1=" " ind2=" " tag="020">
+                                <subfield code="a">002872240X</subfield>
+                                <subfield code="q">(pbk.)</subfield>
+                            </datafield>
+                            <datafield ind1=" " ind2=" " tag="020">
+                                <subfield code="a">9780028722405</subfield>
+                                <subfield code="q">(pbk.)</subfield>
+                            </datafield>
+                            <datafield ind1=" " ind2="4" tag="050">
+                                <subfield code="a">ML410.B4</subfield>
+                                <subfield code="b">S64 1979</subfield>
+                            </datafield>
+                            <datafield ind1="0" ind2="4" tag="082">
+                                <subfield code="a">780.92</subfield>
+                            </datafield>
+                            <datafield ind1="1" ind2=" " tag="100">
+                                <subfield code="a">Solomon, Maynard.</subfield>
+                            </datafield>
+                            <datafield ind1="1" ind2="0" tag="245">
+                                <subfield code="a">Beethoven /</subfield>
+                                <subfield code="c">Maynard Solomon.</subfield>
+                            </datafield>
+                            <datafield ind1=" " ind2=" " tag="250">
+                                <subfield code="a">Schirmer books pbk. ed.</subfield>
+                            </datafield>
+                            <datafield ind1=" " ind2=" " tag="260">
+                                <subfield code="a">New York :</subfield>
+                                <subfield code="b">Schirmer Books,</subfield>
+                                <subfield code="c">1979, \xc2\xa91977.</subfield>
+                            </datafield>
+                            <datafield ind1=" " ind2=" " tag="300">
+                                <subfield code="a">xvi, 400 pages :</subfield>
+                                <subfield code="b">illustrations, map, music ;</subfield>
+                                <subfield code="c">24 cm</subfield>
+                            </datafield>
+                            <datafield ind1=" " ind2=" " tag="336">
+                                <subfield code="a">text</subfield>
+                                <subfield code="b">txt</subfield>
+                                <subfield code="2">rdacontent</subfield>
+                            </datafield>
+                            <datafield ind1=" " ind2=" " tag="337">
+                                <subfield code="a">unmediated</subfield>
+                                <subfield code="b">n</subfield>
+                                <subfield code="2">rdamedia</subfield>
+                            </datafield>
+                            <datafield ind1=" " ind2=" " tag="338">
+                                <subfield code="a">volume</subfield>
+                                <subfield code="b">nc</subfield>
+                                <subfield code="2">rdacarrier</subfield>
+                            </datafield>
+                            <datafield ind1=" " ind2=" " tag="504">
+                                <subfield code="a">Includes bibliographical references (pages 372-385) and indexes.</subfield>
+                            </datafield>
+                            <datafield ind1="1" ind2="0" tag="600">
+                                <subfield code="a">Beethoven, Ludwig van,</subfield>
+                                <subfield code="d">1770-1827.</subfield>
+                            </datafield>
+                            <datafield ind1=" " ind2="0" tag="650">
+                                <subfield code="a">Composers</subfield>
+                                <subfield code="v">Biography.</subfield>
+                            </datafield>
+                            <datafield ind1="1" ind2="7" tag="600">
+                                <subfield code="a">Beethoven, Ludwig van,</subfield>
+                                <subfield code="d">1770-1827.</subfield>
+                                <subfield code="2">fast</subfield>
+                                <subfield code="0">(OCoLC)fst00042803</subfield>
+                            </datafield>
+                            <datafield ind1=" " ind2="7" tag="650">
+                                <subfield code="a">Composers.</subfield>
+                                <subfield code="2">fast</subfield>
+                                <subfield code="0">(OCoLC)fst00871620</subfield>
+                            </datafield>
+                            <datafield ind1=" " ind2="7" tag="655">
+                                <subfield code="a">Biography.</subfield>
+                                <subfield code="2">fast</subfield>
+                                <subfield code="0">(OCoLC)fst01423686</subfield>
+                            </datafield>
+                            <datafield ind1=" " ind2=" " tag="938">
+                                <subfield code="a">Baker &amp; Taylor</subfield>
+                                <subfield code="b">BKTY</subfield>
+                                <subfield code="c">18.00</subfield>
+                                <subfield code="d">18.00</subfield>
+                                <subfield code="i">002872240X</subfield>
+                                <subfield code="n">0000154262</subfield>
+                                <subfield code="s">active</subfield>
+                            </datafield>
+                            <datafield ind1=" " ind2=" " tag="938">
+                                <subfield code="a">YBP Library Services</subfield>
+                                <subfield code="b">YANK</subfield>
+                                <subfield code="n">9668</subfield>
+                            </datafield>
+                        </record>
+                    </bibliographicRecord>
+                    <holdings>
+                        <holding>
+                            <typeOfRecord>x</typeOfRecord>
+                            <encodingLevel>u</encodingLevel>
+                            <format>zu</format>
+                            <receiptAcqStatus>0</receiptAcqStatus>
+                            <generalRetention>0</generalRetention>
+                            <completeness>4</completeness>
+                            <dateOfReport>130611</dateOfReport>
+                            <nucCode>WEX</nucCode>
+                            <localLocation>WEXA</localLocation>
+                            <shelvingLocation>Stacks</shelvingLocation>
+                            <callNumber>ML410.B4 S64 1979</callNumber>
+                            <volumes>
+                                <volume/>
+                            </volumes>
+                            <circulations>
+                                <circulation>
+                                    <availableNow value="1" />
+                                    <itemId>30386000085578</itemId>
+                                    <renewable value="0" />
+                                    <onHold value="0" />
+                                </circulation>
+                            </circulations>
+                        </holding>
+                    </holdings>
+                    <holdQueueSize>0</holdQueueSize>
+                </opacRecord>
+            </recordData>
+        </record>
+    </records>
+    <nextRecordPosition>1</nextRecordPosition>
+</searchRetrieveResponse>

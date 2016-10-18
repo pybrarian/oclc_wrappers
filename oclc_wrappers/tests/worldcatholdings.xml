@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<holdings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.loc.gov/standards/iso20775/N121_ISOholdings_v4.xsd">
+    <holding>
+        <institutionIdentifier>
+            <value>WEX</value>
+            <typeOrSource>
+                <pointer>http://worldcat.org/registry/institutions/</pointer></typeOrSource></institutionIdentifier>
+        <physicalLocation>Westfield State University</physicalLocation>
+        <physicalAddress>
+            <text>Westfield, MA 01086 United States</text></physicalAddress>
+        <electronicAddress>
+            <text>http://www.worldcat.org/wcpa/oclc/320842055?page=frame&amp;url=http%3A%2F%2Fwestfield.worldcat.org%2Fisbn%2F9780198043959%26checksum%3Dced0ef5f08669f2f283e47005c7dcc8c&amp;title=Westfield+State+University&amp;linktype=opac&amp;detail=WEX%3AWestfield+State+University%3AAcademic Library&amp;app=wcapi&amp;id=</text></electronicAddress>
+        <holdingSimple>
+            <copiesSummary>
+                <copiesCount>1</copiesCount></copiesSummary></holdingSimple></holding></holdings>
