@@ -1,7 +1,6 @@
 from authliboclc import user, wskey
 
 
-# TODO: Think about making Auth take an Institution object
 class Auth:
 
     def __init__(self, params, options=None):

@@ -41,6 +41,10 @@ FUND_URLS = {
     'search': UrlAndVerb('https://{inst_id}.share.worldcat.org/acquisitions/fund/search', 'GET')
 }
 
+CLASSIFY_URL = {
+    'read': UrlAndVerb('http://classify.oclc.org/classify2/Classify', 'GET')
+}
+
 ITEM_TEMPLATE = {
     'claimingSettings': None,
     'copyConfigs': {
@@ -71,7 +75,6 @@ ITEM_TEMPLATE = {
     'lastUpdateTime': None,
     'link': None,
     'materialType': None,
-    'note': None,
     'orderItemNumber': None,
     'orderItemNumberRange': None,
     'orderType': 'FIRM_ORDER',
@@ -103,6 +106,7 @@ ITEM_TEMPLATE = {
     'shippingType': None,
     'sourceOfInformation': None,
     'subject': None,
+    'notes': {'note': [], 'link': []},
     'tax1Percentage': None,
     'tax2Percentage': None,
     'totalPrice': None,

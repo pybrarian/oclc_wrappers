@@ -1,5 +1,5 @@
 import xml.etree.ElementTree as ET
-from oclc_wrappers.constants import NS
+from oclc_wrapper.constants import NS
 
 
 class XMLObject(object):

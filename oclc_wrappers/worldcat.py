@@ -1,10 +1,11 @@
 import xml.etree.ElementTree as ET
 import re
 
-from .requestor import WorldcatRequest, WorldcatLibraryRequest
+from oclc_wrappers.constants import WORLDCAT_RESOURCE_URLS, WORLDCAT_LIBRARY_URLS
+from oclc_wrappers.requestor import WSKeyLiteRequest
 
 
-class WorldcatResource:
+class WorldcatResource(object):
 
     def __init__(self, key, xml_response):
         self.key = key
@@ -68,7 +69,7 @@ class WorldcatResource:
 
     @property
     def isbn(self):
-        isbn_10_regex = re.compile('^[0-9xX]{10}$')
+        isbn_10_regex = re.compile('^\d{10}$')
         isbn_fields = self.root.findall('.//{ns}{elem}'.format(ns=self.ns, elem='datafield[@tag="020"]'))
         for isbn in isbn_fields:
             try:
@@ -83,21 +84,25 @@ class WorldcatResource:
 
     @property
     def isbn_10s(self):
-        isbn_10_regex = re.compile('^[0-9xX]{10}$')
+        isbn_10_regex = re.compile('^\d{10}$')
         isbn_fields = self.root.findall('.//{ns}{elem}'.format(ns=self.ns, elem='datafield[@tag="020"]'))
         isbns = []
         for isbn in isbn_fields:
             try:
                 isbns.append(re.search(isbn_10_regex,
-                                 self.find('subfield[@code="a"]',
-                                           parent=isbn).text
-                                 ).group().strip())
+                                       self.find('subfield[@code="a"]',
+                                                 parent=isbn).text
+                                       ).group().strip())
             except AttributeError:
                 pass
         if isbns:
             return isbns
         else:
             return ''
+
+    @property
+    def id_code(self):
+        return self.isbn
 
     def find(self, elem, parent=None):
         try:
@@ -115,7 +120,7 @@ class WorldcatResource:
         return pf
 
 
-class WorldcatHoldings:
+class WorldcatHoldings(object):
 
     def __init__(self, xml_response):
         self.root = ET.fromstring(xml_response)
@@ -130,20 +135,41 @@ class WorldcatHoldings:
         return are_there_holdings
 
 
-def get_resource_by_isbn(key, isbn, params=None):
-    if params is None:
-        params = {}
-    params.update({'servicelevel': 'full'})
-    requestor = WorldcatRequest(key, 'isbn', params=params, number=isbn)
-    r = requestor.send_request()
-    return WorldcatResource(key, r.content)
+def worldcat_request(auth):
+    return WSKeyLiteRequest(auth, WORLDCAT_RESOURCE_URLS)
 
 
-def check_holdings_by_oclc_number(key, oclc_number, oclc_symbol, params=None):
-    if params is None:
-        params = {}
-    params.update({'servicelevel': 'full'})
-    requestor = WorldcatLibraryRequest(key, 'oclc', oclc_symbol, params=params, number=oclc_number)
-    r = requestor.send_request()
+def worldcat_library_request(auth):
+    return WSKeyLiteRequest(auth, WORLDCAT_LIBRARY_URLS)
+
+
+def get_resource_by_isbn(auth, isbn, query_params=None):
+    if query_params is None:
+        query_params = {}
+    query_params.update({'servicelevel': 'full'})
+    url_params = {'number': isbn}
+    requestor = worldcat_request(auth)
+    r = requestor.send_request('isbn', url_params=url_params, query_params=query_params)
+    return WorldcatResource(auth, r.content)
+
+
+def check_holdings_by_oclc_number(auth, oclc_number, oclc_symbol, query_params=None):
+    if query_params is None:
+        query_params = {}
+    query_params.update({'servicelevel': 'full', 'oclcsymbol': oclc_symbol})
+    url_params = {'number': oclc_number}
+    requestor = worldcat_library_request(auth)
+    r = requestor.send_request('oclc', url_params=url_params, query_params=query_params)
+    holdings = WorldcatHoldings(r.content)
+    return holdings.has_holdings
+
+
+def check_holdings_by_isbn(auth, isbn, oclc_symbol, query_params=None):
+    if query_params is None:
+        query_params = {}
+    query_params.update({'servicelevel': 'full', 'oclcsymbol': oclc_symbol})
+    url_params = {'number': isbn}
+    requestor = worldcat_library_request(auth)
+    r = requestor.send_request('isbn', url_params=url_params, query_params=query_params)
     holdings = WorldcatHoldings(r.content)
     return holdings.has_holdings
