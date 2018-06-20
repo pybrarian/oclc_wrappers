@@ -351,8 +351,14 @@ def create_purchase_order(auth, name, vendor_id, **kwargs):
 def send_purchase_order(auth, po):
     requestor = po_request(auth)
     r = requestor.send_request('create', data=po)
-    check_status_code(r, (201,))
+    check_status_code(r, (201,), po)
     return r
+
+
+def delete_purchase_order(auth, order):
+    requestor = po_request(auth)
+    r = requestor.send_request('delete', url_params={'order': order})
+    check_status_code(r, (200,))
 
 
 # TODO: Implement
@@ -363,7 +369,7 @@ def update_purchase_order(auth, po_number):
 def attach_item_to_order(auth, order, item):
     requestor = item_request(auth=auth)
     url_params = {'order': order}
-    r = requestor.send_request('create', url_params=url_params)
+    r = requestor.send_request('create', url_params=url_params, data=item)
     check_status_code(r, (201,), item)
     return Item(auth, json.loads(r.content))
 

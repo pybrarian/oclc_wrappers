@@ -6,7 +6,6 @@ class Auth:
     def __init__(self, params, options=None):
         self.key = params.get('key')
         self.secret = params.get('secret')
-        self.url = params.get('url')
         self.principleId = params.get('principleId')
         self.principleIDNS = params.get('principleIDNS')
         self.institutionId = params.get('institutionId')
@@ -23,14 +22,14 @@ class Auth:
             secret=self.secret,
             options=self.options)
 
-    def get_signature(self, http_verb):
+    def get_signature(self, http_verb, url):
         return self.wsKey.get_hmac_signature(method=http_verb,
-                                             request_url=self.url,
+                                             request_url=url,
                                              options={'user': self.user,
                                                       'authParams': None})
 
-    def get_header(self, http_verb):
-        headers = {'Authorization': self.get_signature(http_verb),
+    def get_header(self, http_verb, url):
+        headers = {'Authorization': self.get_signature(http_verb, url),
                    'Accept': 'application/json'}
         if self.etag and http_verb == 'PUT':
             headers.update({'If-Match': self.etag})
