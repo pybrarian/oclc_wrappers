@@ -1,3 +1,4 @@
+import copy
 import json
 
 from oclc_wrappers.oclc_exceptions import RequestError
@@ -8,7 +9,7 @@ from oclc_wrappers.constants import PO_TEMPLATE, ITEM_TEMPLATE, ITEM_FUND_FIELDS
 class PurchaseOrder(object):
 
     def __init__(self, auth, *args, **kwargs):
-        self._data = PO_TEMPLATE
+        self._data = copy.deepcopy(PO_TEMPLATE)
         self._data.update(*args, **kwargs)
         self.auth = auth
 
@@ -84,7 +85,7 @@ class Item(object):
     """
 
     def __init__(self, auth, *args, **kwargs):
-        self._data = ITEM_TEMPLATE
+        self._data = copy.deepcopy(ITEM_TEMPLATE)
         self._data.update(*args, **kwargs)
         self.auth = auth
 
@@ -193,7 +194,7 @@ class Item(object):
     def attach_to_order(self, order):
         new_item = attach_item_to_order(self.auth, order, self._data)
         self._data.clear()
-        self._data.update(new_item)
+        self._data.update(new_item._data)
 
     def add_isbn(self, isbn):
         self.worldcat['isbn'].append(isbn)
