@@ -54,7 +54,7 @@ class PurchaseOrder(object):
     def create_in_wms(self):
         r = send_purchase_order(self.auth, self._data)
         self._data.clear()
-        self._data.update(json.loads(r.content))
+        self._data.update(r.json())
 
 
 class Item(object):
@@ -350,7 +350,7 @@ def get_purchase_order(auth, po_number):
     url_params = {'order': po_number}
     r = requestor.send_request('read', url_params=url_params)
     check_status_code(r, (200,))
-    return PurchaseOrder(auth, json.loads(r.content))
+    return PurchaseOrder(auth, r.json())
 
 
 def get_all_purchase_order_items(auth, po_number):
@@ -394,7 +394,7 @@ def attach_item_to_order(auth, order, item):
     url_params = {'order': order}
     r = requestor.send_request('create', url_params=url_params, data=item)
     check_status_code(r, (201,), item)
-    return Item(auth, json.loads(r.content))
+    return Item(auth, r.json())
 
 
 def get_fund(auth, inst_id, fund, budget=None):
@@ -405,7 +405,7 @@ def get_fund(auth, inst_id, fund, budget=None):
     url_params = {'inst_id': inst_id, 'fund': fund, 'budget': budget}
     r = requestor.send_request(action, url_params=url_params)
     check_status_code(r, (200,))
-    return Fund(auth, json.loads(r.content))
+    return Fund(auth, r.json())
 
 
 def search_funds(auth, inst_id, budget=None, parent=None):
@@ -437,7 +437,7 @@ def get_all_records(requestor, action, url_params=None, query_params=None):
     while True:
         r = requestor.send_request(action, url_params=url_params, query_params=query_params)
         check_status_code(r, (200,))
-        elems = json.loads(r.content)
+        elems = r.json()
         all_items.extend(elems['entry'])
         query_params['startIndex'] += 10
         if all_records_retrieved(int(elems['totalResults']), query_params['startIndex']):

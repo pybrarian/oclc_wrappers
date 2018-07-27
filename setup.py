@@ -2,7 +2,7 @@ import setuptools
 
 setuptools.setup(
     name="oclc_wrappers",
-    version="0.0.5",
+    version="0.0.6",
     author="Ed Hill",
     author_email="edhill@protonmail.com",
     description="Wrappers around OCLC APIs",
