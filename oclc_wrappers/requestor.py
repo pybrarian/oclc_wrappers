@@ -1,6 +1,6 @@
 import requests
 
-from oclc_wrappers.urlmanager import Urls
+from .urlmanager import Urls
 
 
 class Requestor(object):

@@ -5,7 +5,7 @@ from __future__ import (absolute_import,
 
 import requests
 
-from oclc_wrappers.oclc_exceptions import CollectionNotFound, NoKbart
+from .oclc_exceptions import CollectionNotFound, NoKbart
 
 
 class KB:

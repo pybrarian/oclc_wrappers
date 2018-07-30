@@ -1,8 +1,8 @@
 import xml.etree.ElementTree as ET
 import re
 
-from oclc_wrappers.constants import WORLDCAT_RESOURCE_URLS, WORLDCAT_LIBRARY_URLS
-from oclc_wrappers.requestor import WSKeyLiteRequest
+from .constants import WORLDCAT_RESOURCE_URLS, WORLDCAT_LIBRARY_URLS
+from .requestor import WSKeyLiteRequest
 
 
 class WorldcatResource(object):

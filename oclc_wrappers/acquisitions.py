@@ -1,9 +1,8 @@
 import copy
-import json
 
-from oclc_wrappers.oclc_exceptions import RequestError
-from oclc_wrappers.requestor import HMACRequest
-from oclc_wrappers.constants import PO_TEMPLATE, ITEM_TEMPLATE, ITEM_FUND_FIELDS, PO_URLS, ITEM_URLS, FUND_URLS
+from .oclc_exceptions import RequestError
+from .requestor import HMACRequest
+from .constants import PO_TEMPLATE, ITEM_TEMPLATE, ITEM_FUND_FIELDS, PO_URLS, ITEM_URLS, FUND_URLS
 
 
 class PurchaseOrder(object):
@@ -206,8 +205,8 @@ class Item(object):
         self._data['notes']['note'] = [{'content': note, 'type': 'STAFF', 'alert': 'NONE'}
                                        for note in args if note]
 
-    def add_fund(self, copy=None, **kwargs):
-        copy_index = self._get_copy_index(copy)
+    def add_fund(self, copy_data=None, **kwargs):
+        copy_index = self._get_copy_index(copy_data)
         self.copies[copy_index]['booking'].append(self._new_fund(**kwargs))
         return len(self.copies[copy_index]['booking']) - 1
 
@@ -219,16 +218,16 @@ class Item(object):
             self._check_key(key)
             self.copies[copy_index]['booking'][fund_index][key] = val
 
-    def fund_index_by_code(self, code, copy=None):
-        copy_index = self._get_copy_index(copy)
+    def fund_index_by_code(self, code, copy_data=None):
+        copy_index = self._get_copy_index(copy_data)
         for index, fund in enumerate(self.copies[copy_index]['booking']):
             if fund['budgetAccountCode'] == code:
                 return index
         raise KeyError
 
     def copy_index_by_number(self, number=None):
-        for index, copy in enumerate(self.copies):
-            if copy['copyConfigNumber'] == number:
+        for index, copy_data in enumerate(self.copies):
+            if copy_data['copyConfigNumber'] == number:
                 return index
         raise KeyError
 
@@ -237,28 +236,28 @@ class Item(object):
         return len(self.copies) - 1
 
     def all_copies_same_branch(self, branch_id):
-        for copy in self.copies:
-            copy['branchId'] = branch_id
+        for copy_data in self.copies:
+            copy_data['branchId'] = branch_id
 
-    def set_branch(self, branch_id, copy=None):
-        copy_index = self._get_copy_index(copy)
+    def set_branch(self, branch_id, copy_data=None):
+        copy_index = self._get_copy_index(copy_data)
         self.copies[copy_index]['branchId'] = branch_id
 
-    def set_shelving(self, shelving_code, copy=None):
-        copy_index = self._get_copy_index(copy)
+    def set_shelving(self, shelving_code, copy_data=None):
+        copy_index = self._get_copy_index(copy_data)
         self.copies[copy_index]['shelvingLocationId'] = shelving_code
 
-    def _get_fund_index(self, fund, copy):
+    def _get_fund_index(self, fund, copy_data):
         if fund is None:
             return 0
         else:
-            return self.fund_index_by_code(fund, copy=copy)
+            return self.fund_index_by_code(fund, copy_data=copy_data)
 
-    def _get_copy_index(self, copy):
-        if copy is None:
+    def _get_copy_index(self, copy_data):
+        if copy_data is None:
             return 0
         else:
-            return self.copy_index_by_number(copy)
+            return self.copy_index_by_number(copy_data)
 
     def _new_fund(self, **kwargs):
         fund = ITEM_TEMPLATE['copyConfigs']['copyConfig'][0]['booking'][0].copy()
@@ -267,10 +266,10 @@ class Item(object):
         return fund
 
     def _new_copy(self, **kwargs):
-        copy = ITEM_TEMPLATE['copyConfigs']['copyConfig'][0].copy()
+        new_copy = ITEM_TEMPLATE['copyConfigs']['copyConfig'][0].copy()
         for key, val in kwargs.items():
-            copy[key] = val
-        return copy
+            new_copy[key] = val
+        return new_copy
 
     def _check_key(self, key):
         if key not in ITEM_FUND_FIELDS:
