@@ -55,6 +55,9 @@ class PurchaseOrder(object):
         self._data.clear()
         self._data.update(r.json())
 
+    def delete(self):
+        delete_purchase_order(self.auth, self.number)
+
 
 class Item(object):
     """
